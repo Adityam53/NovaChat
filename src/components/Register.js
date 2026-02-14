@@ -8,10 +8,13 @@ const Register = ({ setUser }) => {
 
   const handleRegister = async () => {
     try {
-      const { data } = await axios.post("http://localhost:5001/auth/register", {
-        username,
-        password,
-      });
+      const { data } = await axios.post(
+        "https://nova-chat-backend.vercel.app/auth/register",
+        {
+          username,
+          password,
+        },
+      );
 
       setRegistrationSuccess(
         "You are registered successfully. Proceed to login.",
