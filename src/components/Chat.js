@@ -5,8 +5,9 @@ import MessageList from "./MessageList";
 import EmojiPicker from "emoji-picker-react";
 import "./chat.css";
 
-const socket = io("https://nova-chat-backend.vercel.app");
-
+const socket = io("https://nova-chat-backend.vercel.app", {
+  transports: ["websocket"],
+});
 export const Chat = ({ user }) => {
   const [users, setUsers] = useState([]);
   const [currentChat, setCurrentChat] = useState(null);
@@ -21,9 +22,12 @@ export const Chat = ({ user }) => {
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const { data } = await axios.get("http://localhost:5001/users", {
-          params: { currentUser: user.username },
-        });
+        const { data } = await axios.get(
+          "https://nova-chat-backend.vercel.app/users",
+          {
+            params: { currentUser: user.username },
+          },
+        );
         setUsers(data);
       } catch (error) {
         console.error("Error fetching users", error);
@@ -63,9 +67,12 @@ export const Chat = ({ user }) => {
 
   const fetchMessages = async (receiver) => {
     try {
-      const { data } = await axios.get("http://localhost:5001/messages", {
-        params: { sender: user.username, receiver },
-      });
+      const { data } = await axios.get(
+        "https://nova-chat-backend.vercel.app/messages",
+        {
+          params: { sender: user.username, receiver },
+        },
+      );
 
       setMessages(data);
       setCurrentChat(receiver);
