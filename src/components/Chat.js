@@ -7,6 +7,7 @@ import "./chat.css";
 
 const socket = io("https://nova-chat-backend.vercel.app", {
   transports: ["polling"],
+  withCredentials: true,
 });
 
 export const Chat = ({ user }) => {
