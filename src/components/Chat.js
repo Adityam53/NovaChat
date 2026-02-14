@@ -5,7 +5,7 @@ import MessageList from "./MessageList";
 import EmojiPicker from "emoji-picker-react";
 import "./chat.css";
 
-const socket = io("https://nova-chat-backend.vercel.app/");
+const socket = io("https://nova-chat-backend.vercel.app");
 
 export const Chat = ({ user }) => {
   const [users, setUsers] = useState([]);
